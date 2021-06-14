@@ -1,0 +1,161 @@
+#include <iostream>
+#include <windows.h>
+#include <cstdlib>
+#include <conio.h>
+using namespace std;
+void gotoxy(int column, int line);
+void Menu();
+void StartGame();
+struct Point {
+	int x, y;
+};
+class CONRAN {
+public:
+	struct Point A[100];
+	int DoDai;
+
+	CONRAN() {
+		DoDai = 3;
+		A[0].x = 10; A[0].y = 10;
+		A[1].x = 11; A[1].y = 10;
+		A[2].x = 12; A[2].y = 10;
+	}
+
+	void Ve() {
+		HANDLE hConsoleColor;
+		hConsoleColor = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(hConsoleColor, 34);
+		for (int i = 0; i < DoDai; i++) {
+			gotoxy(A[i].x, A[i].y);
+			cout << " ";
+		}
+		SetConsoleTextAttribute(hConsoleColor, 15);
+		}
+	
+	void DiChuyen(int Huong) {
+		for (int i = DoDai - 1; i > 0; i--)
+			A[i] = A[i - 1];
+		if (Huong == 0) A[0].x = A[0].x + 1;
+		if (Huong == 1) A[0].y = A[0].y + 1;
+		if (Huong == 2) A[0].x = A[0].x - 1;
+		if (Huong == 3) A[0].y = A[0].y - 1;
+
+	}
+};
+
+void Menu() {
+	system("color E5");
+	system("cls");
+	cout << "Coded by:C++" << endl;
+	cout << "\t\t\t\t\t\tWelcome to Snake Game!\t\t\t\t\t\t" << endl;
+	cout << "\t\tWhere you can perform all of your carpricious skill to help the snake grow his body up!\t\t\t" << endl;
+	cout << "\t\t\t\t\t\tJust not to long <3" << endl;
+	cout << "" << endl;
+	cout << "" << endl;
+	cout << "" << endl;
+	cout << "\t\t\t\t\t\t     Main Menu" << endl;
+	cout << "" << endl;
+	cout << "\t\t\t\t\t\tStart Game(Press 1)" << endl;
+	cout << "\t\t\t\t\t\tQuit Game (Press 2)" << endl;
+	int option;
+	cin >> option;
+	if (option == 1) {
+		system("cls");
+		cout << "\t\t\t\t\t\tPleas enjoy the game!" << endl;
+		Sleep(1000);
+		StartGame();
+		
+	}
+	else if (option == 2) {
+		exit(1);
+	}
+	}
+
+void GameOver() {
+	system("color E5");
+	system("cls");
+	cout << "The Game Is Over!" << endl;
+	cout << "High Score: " << endl;
+}
+
+void StartGame() {
+	//color
+	HANDLE hConsoleColor;
+	hConsoleColor = GetStdHandle(STD_OUTPUT_HANDLE);
+	// 34: xanh la
+	// 119: trang
+	// 15: den
+	// 68: do
+
+	int column = 50;
+	int line = 20;
+
+	CONRAN r;
+	int Huong = 0;
+	char t;
+
+	while (1) {
+		if (_kbhit()) {
+			t = _getch();
+			if (t == 'a') Huong = 2;
+			if (t == 'w') Huong = 3;
+			if (t == 'd') Huong = 0;
+			if (t == 's') Huong = 1;
+		}
+		system("cls");
+
+		//Vẽ khung ở trên và 2 bên
+		for (int i = 0; i < column; i++) {
+			SetConsoleTextAttribute(hConsoleColor, 119);
+			cout << " ";
+		}
+		SetConsoleTextAttribute(hConsoleColor, 15);
+		cout << endl;
+		for (int i = 0; i < line; i++) {
+			gotoxy(0, i);
+			SetConsoleTextAttribute(hConsoleColor, 119);
+			cout << " ";
+			SetConsoleTextAttribute(hConsoleColor, 15);
+			gotoxy(column - 1, i);
+			SetConsoleTextAttribute(hConsoleColor, 119);
+			cout << " ";
+			SetConsoleTextAttribute(hConsoleColor, 15);
+		}
+		//Vẽ khung ở trên và 2 bên
+
+		r.Ve();
+		r.DiChuyen(Huong);
+		
+		//Vẽ khung ở dưới đáy
+		gotoxy(0, line);
+		for (int i = 0; i < column; i++) {
+			SetConsoleTextAttribute(hConsoleColor, 119);
+			cout << " ";
+		}
+		SetConsoleTextAttribute(hConsoleColor, 15);
+		//Vẽ khung ở dưới đáy
+
+		Sleep(300);
+	}
+	
+}
+
+void gotoxy(int column, int line)
+{
+	COORD coord;
+	coord.X = column;
+	coord.Y = line;
+	SetConsoleCursorPosition(
+		GetStdHandle(STD_OUTPUT_HANDLE),
+		coord
+	);
+}
+
+int main()
+{
+	Menu();
+
+	return 0;
+}
+
+
