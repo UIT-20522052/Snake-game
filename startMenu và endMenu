@@ -139,7 +139,6 @@ void StartGame() {
 	}
 	
 }
-
 void gotoxy(int column, int line)
 {
 	COORD coord;
