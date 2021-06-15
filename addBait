@@ -1,8 +1,0 @@
-void addBait() {
-
-	srand(time(NULL));
-	int x = rand() % (50 - 20 + 1) + 20;
-	int y = rand() % (50 - 20 + 1) + 20;	
-	gotoxy(x, y);
-	cout << "O";
-}
