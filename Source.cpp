@@ -20,6 +20,22 @@ bool kt_ran_an_qua(int xqua, int yqua, int x0, int y0);
 
 int main() {
 	
+	system("color E5");
+	system("cls");
+	cout << "Coded by:C++" << endl;
+	cout << "\t\t\t\t\t\tWelcome to Snake Game!\t\t\t\t\t\t" << endl;
+	cout << "\t\tWhere you can perform all of your carpricious skill to help the snake grow his body up!\t\t\t" << endl;
+	cout << "\t\t\t\t\t\tJust not to long <3" << endl;
+	cout << "" << endl;
+	cout << "" << endl;
+	cout << "" << endl;
+	cout << "\t\t\t\t\t\t     Main Menu" << endl;
+	cout << "" << endl;
+	cout << "\t\t\t\t\t\tStart Game(Press 1)" << endl;
+	cout << "\t\t\t\t\t\tQuit Game (Press 2)" << endl;
+	int option;
+	cin >> option;
+	if (option == 1) {
 	bool gameover = false;
 	int toadox[MAX];
 	int toadoy[MAX];
@@ -35,13 +51,13 @@ int main() {
 	int x = 50;
 	int y = 13;//dinh hinh vi tri can di chuyen cho ran
 	int check = 2;//kiểm tra biên
-	while (gameover==false)
+	while (gameover == false)
 	{
 		xoa_du_lieu_cu(toadox, toadoy);
-	//0 nhắm vào biên trên đi xuống
-	//1 nhắm vào biên dưới đi lên
-	//2 chạm vào biên phải-đi qua trái
-	//3 chạm vào biên trái - đi qua phải
+		//0 nhắm vào biên trên đi xuống
+		//1 nhắm vào biên dưới đi lên
+		//2 chạm vào biên phải-đi qua trái
+		//3 chạm vào biên trái - đi qua phải
 		if (_kbhit()) {
 			char kitu = _getch();
 			if (kitu == -32) {
@@ -74,10 +90,14 @@ int main() {
 			x--;
 		}
 		gameover = kt_ran(toadox, toadoy);
-		xu_ly_ran(toadox, toadoy, x, y,xqua,yqua);
+		xu_ly_ran(toadox, toadoy, x, y, xqua, yqua);
 		Sleep(100);
 	}
 	_getch();
+}
+	else if (option == 2) {
+		exit(1);
+	}
 	return 0;
 }
 
