@@ -6,6 +6,9 @@ using namespace std;
 int sl = 4;
 
 void Initial_snake(int toadox[], int toadoy[]);
+void startMenu();
+void StartGame();
+void gameOver();
 void ve_ran(int toadox[], int toadoy[]);
 void xu_ly_ran(int toadox[], int toadoy[], int x, int y, int& xqua, int& yqua);
 void them(int a[], int x);
@@ -18,9 +21,9 @@ void tao_qua(int& xqua, int& yqua, int toadox[], int toadoy[]);
 bool kt_ran_de_qua(int xqua, int yqua, int toadox[], int toadoy[]);
 bool kt_ran_an_qua(int xqua, int yqua, int x0, int y0);
 
-int main() {
-	system("color E5");
-	system("cls");
+void startMenu()
+{
+	
 	cout << "Coded by:C++" << endl;
 	cout << "\t\t\t\t\t\tWelcome to Snake Game!\t\t\t\t\t\t" << endl;
 	cout << "\t\tWhere you can perform all of your carpricious skill to help the snake grow his body up!\t\t\t" << endl;
@@ -30,11 +33,26 @@ int main() {
 	cout << "" << endl;
 	cout << "\t\t\t\t\t\t     Main Menu" << endl;
 	cout << "" << endl;
+	//===khoi tao tuy chon cho game===//
 	cout << "\t\t\t\t\t\tStart Game(Press 1)" << endl;
 	cout << "\t\t\t\t\t\tQuit Game (Press 2)" << endl;
 	int option;
 	cin >> option;
 	if (option == 1) {
+		system("cls");
+		cout << "\t\t\t\t\t\tPleas enjoy the game!" << endl;
+		Sleep(1000);
+		StartGame();
+
+	}
+	else if (option == 2) {
+		exit(1);
+	}
+	
+}
+
+void StartGame() {
+	//===khoi tao components===//
 	bool gameover = false;
 	int toadox[MAX];
 	int toadoy[MAX];
@@ -92,11 +110,26 @@ int main() {
 		xu_ly_ran(toadox, toadoy, x, y, xqua, yqua);
 		Sleep(100);
 	}
+	if (gameover == true) {
+		gameOver();
+		}
 	_getch();
 }
-	else if (option == 2) {
-		exit(1);
+
+void gameOver() 
+	{	
+		system("cls");
+		cout << "\t\t\t\t\t\  The Game Is Over!" << endl;
+		cout << "\t\t\t\t\t\A C# game developed by:   " << endl;
+		cout << "\t\t\t\t\t\Dang Hoang Long - 19521775" << endl;
+		cout << "\t\t\t\t\t\Nguyen Minh Tri - 20522052 " << endl;
+		cout << "\t\t\t\t\t\Le Quang Huy - 20521804" << endl;
+		cout << "\t\t\t\t\t\Nguyen Khanh - 20521449" << endl;
 	}
+
+int main() {
+
+	startMenu();
 	return 0;
 }
 
@@ -186,11 +219,11 @@ bool ran_cham_tuong(int x0, int y0) {
 		return true;
 	}
 	//cham tuong phai
-	else if (x0 == 100 && (y0 >= 1 && y0 <= 26)) {
+	else if (x0 == 100 && (y0 >= 0 && y0 <= 26)) {
 		return true;
 	}
 	//cham tuong trai
-	else if (x0 == 0 && (y0 >= 1 && y0 <= 26)) {
+	else if (x0 == 0 && (y0 >= 0 && y0 <= 26)) {
 		return true;
 	}
 	return false;
@@ -218,7 +251,7 @@ void tao_qua(int& xqua, int& yqua, int toadox[], int toadoy[]) {
 		//1 <=xqua <= 99
 		xqua = rand() % (99 - 1 + 1) + 1;
 		//2 <=yqua <=25
-		yqua = rand() % (25 - 2 + 1) + 2;
+		yqua = rand() % (25 - 1 + 1) + 1;
 	} while (kt_ran_de_qua(xqua, yqua, toadox, toadoy) == true);
 	gotoXY(xqua, yqua);
 	int i = rand() % (15 - 1 + 1) + 1;
