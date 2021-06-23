@@ -120,7 +120,9 @@ void gameOver()
 	{	
 		system("cls");
 		cout << "\t\t\t\t\t\  The Game Is Over!" << endl;
+	
 		cout << "\t\t\t\t\t\A C# game developed by:   " << endl;
+		cout << "\t\t\t\t\t\ Your score is: "<<sl-4 << endl;
 		cout << "\t\t\t\t\t\Dang Hoang Long - 19521775" << endl;
 		cout << "\t\t\t\t\t\Nguyen Minh Tri - 20522052 " << endl;
 		cout << "\t\t\t\t\t\Le Quang Huy - 20521804" << endl;
