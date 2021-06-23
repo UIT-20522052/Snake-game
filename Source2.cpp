@@ -106,7 +106,7 @@ void StartGame() {
 			//di qua trai
 			x--;
 		}
-		gameover = kt_ran(toadox, toadoy);
+		gameover = ran_cham_tuong(toadox[0], toadoy[0]);
 		xu_ly_ran(toadox, toadoy, x, y, xqua, yqua);
 		Sleep(100);
 	}
